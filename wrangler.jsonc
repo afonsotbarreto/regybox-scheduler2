@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "regybox-scheduler2",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  // Setup defaults make the deploy button prompt for these values. After setup,
+  // keep the dashboard as the source of truth for every user-owned variable.
+  "keep_vars": true,
+  "vars": {
+    "CLASS_MAP": "CrossFit = WOD",
+    "TIMEZONE": "Europe/Lisbon",
+    "LOOKAHEAD_HOURS": "73"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "REGYBOX_STATE","id": "5ba978cea38e4773a6fb485b93df14a1"
+    }
+  ],
+  "triggers": {
+    "crons": ["28,58 * * * *"]
+  },
+  "observability": {
+    "logs": {
+      "enabled": true
+    }
+  }
+}
